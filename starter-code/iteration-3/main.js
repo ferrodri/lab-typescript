@@ -1,9 +1,40 @@
 "use strict";
 exports.__esModule = true;
 var TodoItem = (function () {
-    function TodoItem() {
+    function TodoItem(title) {
+        this.title = title;
+        this.status = false;
+        this.updatedAt = new Date();
     }
+    TodoItem.prototype.toggleStatus = function () {
+        this.status = !(this.status);
+    };
     return TodoItem;
+}());
+var TodoList = (function () {
+    function TodoList() {
+        this.tasks = [];
+    }
+    TodoList.prototype.addTask = function (todoItem) {
+        this.tasks.push(todoItem);
+        return this.tasks.length;
+    };
+    TodoList.prototype.listAllTasks = function () {
+        this.tasks.forEach(function (e) {
+            console.log((e.status ? 'is done' : 'is pending') + "\t" + e.title);
+        });
+    };
+    TodoList.prototype.listUncomplete = function () {
+        this.tasks.forEach(function (e) {
+            if (e.status === false)
+                console.log((e.status ? 'is done' : 'is pending') + "\t" + e.title);
+        });
+    };
+    TodoList.prototype.deleteTask = function (task) {
+        this.tasks = this.tasks.filter(function (e) { return e != task; });
+        return this.tasks.length;
+    };
+    return TodoList;
 }());
 var task1 = new TodoItem('This is our first task');
 var task2 = new TodoItem('Eat pizza 🍕 yummy!!!');

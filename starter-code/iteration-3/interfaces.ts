@@ -11,11 +11,12 @@ export interface TodoItemInterface {
     toggleStatus(): void;
 }
 
-export interface TodoListInterface {
-    tasks: Array<string>;
-    addTask(task: string): number;
-    listAllTasks(): void;
-    deleteTask(task: string): number;
+export interface TodoListInterface{
+  tasks: Array<TodoItemInterface>,
+  addTask(task: TodoItemInterface): void,
+  listAllTasks(): void,
+  listUncomplete(): void,
+  deleteTask(task: TodoItemInterface): void
 }
 // Write the interface for class Todo. It must have:
 // - An array of TodoItem as a property.
